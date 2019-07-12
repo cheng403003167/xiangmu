@@ -63,9 +63,9 @@ module.exports = class searchData {
     });
   }
   async searchName(id){
-    let searcText = "SELECT `userName` FROM user WHERE `id` = ?";
+    let searcText = "SELECT `userName` FROM user WHERE `id` = "+id+"";
     return await new Promise((resolve,reject)=>{
-      this.connection.query(searcText,id,(err,result)=>{
+      this.connection.query(searcText,(err,result)=>{
         if(err){
           console.log(err);
           reject()

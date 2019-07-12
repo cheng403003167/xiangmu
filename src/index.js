@@ -49,7 +49,7 @@ router.get('/day/:month/:day',async (ctx)=>{
     }
     if(!userTempFlag){
       datas.userTotal++;
-      datas.originData[s]['userName'] = await data.searchName(datas.originData[s].userId);
+      datas.originData[s]['userName'] = await data.searchNameId(datas.originData[s].userId);
       userNameTempData.push({
         userId: datas.originData[s].userId,
         userName: datas.originData[s]['userName']

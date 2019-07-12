@@ -14,7 +14,7 @@ module.exports = class searchData {
   }
   async searchName(){
     let userData = await new Promise((resolve,reject)=>{
-      this.connection.query('SELECT * FROM user',(err,result)=>{
+      this.connection.query("SELECT * FROM user",(err,result)=>{
         if(err){
           console.log(err);
           reject()
@@ -62,7 +62,7 @@ module.exports = class searchData {
       })
     });
   }
-  async searchName(id){
+  async searchNameId(id){
     let searcText = "SELECT `userName` FROM user WHERE `id` = "+id+"";
     return await new Promise((resolve,reject)=>{
       this.connection.query(searcText,(err,result)=>{

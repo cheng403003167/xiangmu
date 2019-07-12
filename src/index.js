@@ -13,10 +13,10 @@ router.get('/users',async (ctx)=>{
 
   ctx.body = await data.searchName();
 })
-router.get('/month/:month',async (ctx)=>{
+router.get('/month/:year/:month',async (ctx)=>{
   var datas = {};
   await data.conn();
-  datas.originData =  await data.searchImgMonth(ctx.params.month);
+  datas.originData =  await data.searchImgMonth(ctx.params.year,ctx.params.month);
   datas.day = {};
   datas.originData.forEach(function(item){
     let dates = new Date(item.update);
@@ -29,10 +29,10 @@ router.get('/month/:month',async (ctx)=>{
   })
   ctx.body = datas;
 })
-router.get('/day/:month/:day',async (ctx)=>{
+router.get('/day/:year/:month/:day',async (ctx)=>{
   var datas = {},userNameTempData = [],userTempFlag = false;
   await data.conn();
-  datas.originData =  await data.searchImgDay(ctx.params.month,ctx.params.day);
+  datas.originData =  await data.searchImgDay(ctx.params.year,ctx.params.month,ctx.params.day);
   datas.type = {};
   datas.userTotal = 0;
   for(let s = 0;s<datas.originData.length;s++){

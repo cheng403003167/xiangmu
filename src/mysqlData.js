@@ -34,8 +34,8 @@ module.exports = class searchData {
     });
     return userData;
   }
-  async searchImgMonth(month){
-    let searcText = "SELECT `update` FROM imgdata WHERE `update` LIKE '2019-"+month+"%' ORDER BY `update`";
+  async searchImgMonth(year,month){
+    let searcText = "SELECT `update` FROM imgdata WHERE `update` LIKE '"+year+"-"+month+"%' ORDER BY `update`";
     return await new Promise((resolve,reject)=>{
       this.connection.query(searcText,(err,result)=>{
         if(err){
@@ -48,8 +48,8 @@ module.exports = class searchData {
       })
     });
   }
-  async searchImgDay(month,day){
-    let searcText = "SELECT * FROM imgdata WHERE `update` LIKE '2019-"+month+'-'+day+"%' ORDER BY `update`";
+  async searchImgDay(year,month,day){
+    let searcText = "SELECT * FROM imgdata WHERE `update` LIKE '"+year+"-"+month+'-'+day+"%' ORDER BY `update`";
     return await new Promise((resolve,reject)=>{
       this.connection.query(searcText,(err,result)=>{
         if(err){

@@ -5,7 +5,9 @@ const mysqlData = require('./mysqlData.js');
 const path = require('path');
 const data = new mysqlData();
 const app = new Koa();
-const router = new Router();
+const router = new Router({
+  prefix: '/jiandanimgAPI'
+});
 router.get('/users',async (ctx)=>{
   await data.conn();
 

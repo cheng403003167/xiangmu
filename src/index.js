@@ -60,6 +60,21 @@ router.get('/day/:year/:month/:day',async (ctx)=>{
   }
   ctx.body = datas;
 })
+router.get('/userChart',async (ctx)=>{
+  let datas = {};
+  await data.conn();
+  datas = await data.userChart();
+  for(let s = 0;s<datas.length;s++){
+    datas[s].userName = await data.searchNameId(datas[s].userId);
+  }
+  ctx.body = datas;
+})
+router.get('/userInfo/:id',async (ctx)=>{
+  let datas = {};
+  await data.conn();
+  datas = await data.getOneUserInfoBYID(ctx.params.id);
+  ctx.body = datas;
+})
 app.use(cors());
 app.use(router.routes());
 app.use(router.allowedMethods());

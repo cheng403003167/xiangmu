@@ -84,4 +84,31 @@ module.exports = class searchData {
       })
     });
   }
+  async userChart(){
+    let searchText = "SELECT `userId`,COUNT(`userId`) as number FROM imgdata GROUP BY `userId` ORDER BY `number` DESC";
+    return await new Promise((resolve,reject)=>{
+      this.connection.query(searchText,(err,result)=>{
+        if(err){
+          console.log(err);
+          reject()
+          return;
+        }
+        resolve(result)
+        return result;
+      })
+    });
+  }
+  async getOneUserInfoBYID(id){
+    let searcText = "SELECT * FROM imgdata WHERE `userId` = "+id+" ORDER BY `update` DESC";
+    return await new Promise((resolve,reject)=>{
+      this.connection.query(searcText,(err,result)=>{
+        if(err){
+          console.log(err);
+          reject();
+        }
+        resolve(result);
+        return result;
+      })
+    })
+  }
 }
